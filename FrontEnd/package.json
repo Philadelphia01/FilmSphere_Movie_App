@@ -1,13 +1,16 @@
 {
   "name": "angular-movie-app",
   "private": true,
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint"
-  },
+"scripts": {
+  "start": "nodemon ../BackEnd/server.js",  
+  "build": "ng build",
+  "test": "ng test",
+  "lint": "ng lint",
+  "start:dev": "ng serve --configuration development",
+  "e2e": "ng e2e"
+}
+
+,
   "dependencies": {
     "@angular/animations": "^18.2.12",
     "@angular/common": "^18.2.12",
