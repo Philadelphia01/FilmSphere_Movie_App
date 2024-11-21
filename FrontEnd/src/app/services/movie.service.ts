@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Movie, MovieDetails } from '../models/movie.model';
 
@@ -37,7 +37,11 @@ export class MovieService {
   }
 
   searchMovies(query: string): Observable<Movie[]> {
-    return of([]); // Return an empty observable to disable search
+    return this.http.get<any>(
+      `${this.baseUrl}/search/movie?api_key=${this.apiKey}&query=${encodeURIComponent(query)}`
+    ).pipe(
+      map(response => response.results)
+    );
   }
 
   getImageUrl(path: string, size: string = 'w500'): string {
