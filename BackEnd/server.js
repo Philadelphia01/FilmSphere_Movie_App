@@ -1,14 +1,27 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const path = require("path");
 const axios = require("axios");
+const dotenv = require("dotenv");
+const { pool, databaseConnection } = require("./config/database")
+const routes = require('./routes/authRoutes')
+
 
 const app = express();
-const port = 8080;
+dotenv.config();
+databaseConnection();
+const port = process.env.PORT || 8080;
+
+app.use('/api', routes) // routes 1 : /api/login, 2 : /api/register
 
 const apiKey = "8d595551f86c5ed63a30f17469f09f1a";
 const baseUrl = "https://api.themoviedb.org/3";
 
 app.use(express.json());
+app.use(morgan("tiny"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "..", "FrontEnd", "dist", "movie-app", "browser")));
 
