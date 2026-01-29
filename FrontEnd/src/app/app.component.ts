@@ -8,14 +8,25 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   imports: [RouterOutlet, NavigationComponent],
   template: `
     <app-navigation></app-navigation>
-    <main>
+    <main class="main-content">
       <router-outlet></router-outlet>
     </main>
   `,
   styles: [`
-    main {
-      min-height: calc(100vh - 64px);
-      background-color: #f8f9fa;
+    :host {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #000000;
+    }
+    
+    .main-content {
+      flex: 1;
+      padding-top: 1.5rem;
+      padding-bottom: 3rem;
+      width: 100%;
+      position: relative;
+      background: transparent;
     }
   `]
 })

@@ -56,6 +56,13 @@
   padding: 0 2rem;
 }
 
+.cast-section h2 {
+  color: #f5c518;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
 .cast-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
