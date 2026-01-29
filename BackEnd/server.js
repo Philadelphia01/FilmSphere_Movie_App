@@ -4,14 +4,14 @@ const morgan = require("morgan");
 const path = require("path");
 const axios = require("axios");
 const dotenv = require("dotenv");
-const { pool, databaseConnection } = require("./config/database");
+const { pool, databaseConnection } = require("./config/database"); // adjust path if needed
 const routes = require('./routes/authRoutes');
 
 dotenv.config();
 databaseConnection();
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 // Middleware
 app.use(morgan("tiny"));
@@ -26,7 +26,7 @@ const apiKey = "8d595551f86c5ed63a30f17469f09f1a";
 const baseUrl = "https://api.themoviedb.org/3";
 
 // Serve Angular app (production build)
-const angularDistPath = path.join(__dirname, "..", "FrontEnd", "dist", "movie-app", "browser"); // <-- updated path to include 'browser' directory
+const angularDistPath = path.join(__dirname, "../dist/angular-movie-app"); // <-- updated path
 app.use(express.static(angularDistPath));
 
 // Always return index.html for Angular routes
@@ -97,5 +97,5 @@ app.get("/api/movies/:id", async (req, res) => {
 
 // Start server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
